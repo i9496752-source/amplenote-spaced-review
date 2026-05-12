@@ -290,6 +290,10 @@ function replaceCard(cards, updatedCard) {
   return cards.map((card) => card.id === updatedCard.id ? updatedCard : card);
 }
 
+function isRating(value) {
+  return ["again", "hard", "good", "easy"].includes(String(value || "").toLowerCase());
+}
+
 function extractNoteUUID(value) {
   if (!value) return null;
   if (typeof value === "string") return value;
@@ -392,7 +396,7 @@ async function reviewDue(app, deckNoteUUID) {
     const reveal = await app.alert(`Question\n\n${card.question}`, {
       actions: [{ value: "show", label: "Show answer" }, { value: "stop", label: "Stop" }]
     });
-    if (reveal === "stop") break;
+    if (reveal !== "show") break;
 
     const rating = await app.alert(`Answer\n\n${card.answer}`, {
       actions: [
@@ -402,7 +406,7 @@ async function reviewDue(app, deckNoteUUID) {
         { value: "easy", label: "Easy" }
       ]
     });
-    if (!rating) break;
+    if (!isRating(rating)) break;
     cards = replaceCard(cards, scheduleCard(card, rating));
     reviewed += 1;
   }
@@ -425,6 +429,7 @@ const core = {
   dueCards,
   scheduleCard,
   replaceCard,
+  isRating,
   extractNoteUUID,
   promptValues,
   promptForDeckNote,

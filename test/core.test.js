@@ -105,6 +105,24 @@ test("reviewDue updates the deck note after a Good rating", async () => {
   assert.equal(core.parseDeck(content.get("deck"))[0].reps, 1);
 });
 
+test("reviewDue stops without scheduling when the default alert button is used", async () => {
+  const original = core.parseCardsFromMarkdown("Q:: One?\nA:: 1", "Numbers")[0];
+  original.due = "2026-05-12";
+  const content = new Map([["deck", core.renderDeck([original])]]);
+  const app = {
+    getNoteContent: async ({ uuid }) => content.get(uuid),
+    replaceNoteContent: async ({ uuid }, nextContent) => {
+      content.set(uuid, nextContent);
+      return true;
+    },
+    alert: async () => -1
+  };
+
+  const result = await core.reviewDue(app, "deck");
+  assert.equal(result.reviewed, 0);
+  assert.equal(core.parseDeck(content.get("deck"))[0].reps, 0);
+});
+
 test("createDeck initializes an empty deck note", async () => {
   const content = new Map();
   const app = {
