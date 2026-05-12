@@ -15,7 +15,7 @@ function addDays(dateISO, days) {
 }
 
 function normalizeText(value) {
-  return String(value || "")
+  return String(value == null ? "" : value)
     .replace(/\s+/g, " ")
     .trim();
 }

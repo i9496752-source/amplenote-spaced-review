@@ -42,10 +42,12 @@ A:: Ease, interval, repetitions, and due date.
 npm test
 npm run build
 npm run build:note
+npm run smoke
 ```
 
 `build/compiled.js` is the single-file code block that can be pasted into an Amplenote plugin note or synced through the GitHub Plugin Builder.
 `build/plugin-note.md` is a complete plugin note with metadata and the compiled code block already filled in.
+`build/smoke-output.md` is a local end-to-end run report using a mocked Amplenote app.
 
 ## Publishing Notes
 

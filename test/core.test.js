@@ -29,6 +29,8 @@ test("renders and parses the deck table without losing state", () => {
   assert.equal(parsed[0].question, "Capital of France?");
   assert.equal(parsed[0].answer, "Paris");
   assert.equal(parsed[0].reps, 1);
+  assert.equal(parsed[0].lapses, 0);
+  assert.match(rendered, /\| 0 \|$/m);
   assert.ok(parsed[0].due > "2026-05-12");
 });
 
