@@ -1,13 +1,14 @@
 # Bounty Claim Email Template
 
 To: support@amplenote.com
+Cc: hello@amplenote.com
 Subject: Bounty claim: Spaced Review plugin
 
 Hello Amplenote team,
 
-I published a plugin for the Spaced repetition plugin bounty.
+I am submitting a claim for the Spaced repetition plugin bounty.
 
-Plugin page:
+Published plugin page:
 `<AMPLENOTE_PLUGIN_URL>`
 
 Public GitHub repository:
@@ -29,8 +30,23 @@ The plugin lets users:
 
 The repository includes a test suite covering card parsing, deck rendering, deck merging, prompt handling, note updates, and review scheduling.
 
-Invoice/payment details:
-`<PAYPAL_INVOICE_OR_PAYPAL_ADDRESS>`
+The repository and published plugin page are in sync. The plugin is MIT licensed and free to use and modify.
+
+Invoice/payment details are below:
+
+- Bounty amount: `<CONFIRM_CURRENT_BOUNTY_AMOUNT>`
+- PayPal invoice link or invoice number: `<PAYPAL_INVOICE_LINK_OR_NUMBER>`
+- PayPal receiving address: `<PAYPAL_EMAIL>`
+- Payee name: `<NAME_OR_BUSINESS_NAME>`
 
 Thanks,
 `<NAME>`
+
+## Pre-send Checklist
+
+- Replace all placeholders.
+- Confirm the plugin page includes the public GitHub repository link.
+- Confirm the plugin page includes the usage video and code overview video links.
+- Confirm the PayPal address is valid and can receive payments.
+- Attach or link the PayPal invoice if one was created.
+- Send only after the plugin is published to the Amplenote Plugin Directory or Amplenote has explicitly said the public note URL is enough.

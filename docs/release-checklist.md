@@ -24,11 +24,11 @@
 ## External Steps
 
 - [x] Publish the code to a public GitHub repository.
-- [ ] Create an Amplenote plugin note from `plugin-note.md`.
-- [ ] Paste `build/compiled.js` into the first JavaScript code block.
+- [ ] Create an Amplenote plugin note from `build/release-bundle/plugin-note.md`.
 - [ ] Install the plugin in Amplenote Settings.
 - [ ] Run through `docs/sample-cards.md` in a real Amplenote account.
+- [ ] Record a short usage video using `docs/video-outline.md`.
+- [ ] Record a short code overview video using `docs/video-outline.md`.
+- [ ] Replace `<USAGE_VIDEO_URL>` and `<CODE_OVERVIEW_VIDEO_URL>` in the plugin note.
 - [ ] Publish the plugin to the Amplenote Plugin Directory.
-- [ ] Record a short usage video.
-- [ ] Record a short code overview video.
-- [ ] Submit the bounty claim with the plugin link and PayPal invoice details.
+- [ ] Submit the bounty claim with the plugin link and PayPal invoice details from `docs/claim-email-template.md` and `docs/paypal-invoice-checklist.md`.

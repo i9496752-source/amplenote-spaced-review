@@ -51,8 +51,8 @@ npm run bundle
 `build/plugin-note.md` is a complete plugin note with metadata and the compiled code block already filled in.
 `build/smoke-output.md` is a local end-to-end run report using a mocked Amplenote app.
 `build/release-audit.md` maps bounty requirements to repository evidence and remaining account steps.
-`build/release-bundle/` contains the files needed for manual Amplenote installation, video recording, and claim handoff.
+`build/release-bundle/` contains the files needed for manual Amplenote installation, account-side publishing, video recording, invoice preparation, and claim handoff.
 
 ## Publishing Notes
 
-Amplenote bounty terms require a public GitHub repository, a published plugin, and short usage/code overview videos. The PayPal address and invoice should only be supplied during the official bounty claim flow.
+Amplenote bounty terms require a public GitHub repository, a published plugin, and short usage/code overview videos. Use `docs/amplenote-account-publish.md` in the repository, or `amplenote-account-publish.md` inside the release bundle, for the account-side publication flow. The PayPal address and invoice should only be supplied during the official bounty claim flow.

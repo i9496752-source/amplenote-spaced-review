@@ -1,7 +1,7 @@
 # Bounty Notes
 
 Source: https://www.amplenote.com/bounty_plugins
-Last checked: 2026-05-12
+Last checked: 2026-05-13
 
 Relevant open bounty:
 
@@ -18,6 +18,7 @@ Payment source: https://www.amplenote.com/bounty_plugins/terms_conditions
 - The repository must stay synced with the plugin page.
 - A 1-5 minute usage video and a 1-5 minute code overview video are required.
 - The plugin must be MIT licensed or use another open-source license that allows free modification and distribution.
+- The terms mention `hello@amplenote.com` for invoice/payment contact and `support@amplenote.com` for bounty claim submission, so the claim template uses support with hello copied.
 
 Current local status:
 
