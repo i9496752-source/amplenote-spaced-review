@@ -78,6 +78,33 @@ test("prompt helpers support Amplenote array-style input responses", () => {
   assert.equal(core.extractNoteUUID(values.deckNote), "deck-note");
 });
 
+test("promptForDeckNote accepts a single note prompt response", async () => {
+  const app = {
+    prompt: async () => ({ uuid: "deck" })
+  };
+
+  assert.equal(await core.promptForDeckNote(app), "deck");
+});
+
+test("reviewDue updates the deck note after a Good rating", async () => {
+  const original = core.parseCardsFromMarkdown("Q:: One?\nA:: 1", "Numbers")[0];
+  original.due = "2026-05-12";
+  const content = new Map([["deck", core.renderDeck([original])]]);
+  const app = {
+    prompt: async () => ({ uuid: "deck" }),
+    getNoteContent: async ({ uuid }) => content.get(uuid),
+    replaceNoteContent: async ({ uuid }, nextContent) => {
+      content.set(uuid, nextContent);
+      return true;
+    },
+    alert: async (message) => message.startsWith("Question") ? "show" : "good"
+  };
+
+  const result = await core.reviewDue(app, "deck");
+  assert.equal(result.reviewed, 1);
+  assert.equal(core.parseDeck(content.get("deck"))[0].reps, 1);
+});
+
 test("createDeck initializes an empty deck note", async () => {
   const content = new Map();
   const app = {
@@ -86,7 +113,10 @@ test("createDeck initializes an empty deck note", async () => {
       assert.deepEqual(tags, ["spaced-review"]);
       return "deck-created";
     },
-    replaceNoteContent: async ({ uuid }, nextContent) => content.set(uuid, nextContent)
+    replaceNoteContent: async ({ uuid }, nextContent) => {
+      content.set(uuid, nextContent);
+      return true;
+    }
   };
 
   const deckNoteUUID = await core.createDeck(app);

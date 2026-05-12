@@ -309,13 +309,16 @@ async function getNoteContent(app, noteUUID) {
 }
 
 async function writeNoteContent(app, noteUUID, content) {
+  let replaced = false;
   if (typeof app.replaceNoteContent === "function") {
-    return app.replaceNoteContent({ uuid: noteUUID }, content);
+    replaced = await app.replaceNoteContent({ uuid: noteUUID }, content);
+  } else if (typeof app.replaceContent === "function") {
+    replaced = await app.replaceContent({ uuid: noteUUID }, content);
+  } else {
+    throw new Error("This Amplenote client does not expose replaceNoteContent.");
   }
-  if (typeof app.replaceContent === "function") {
-    return app.replaceContent({ uuid: noteUUID }, content);
-  }
-  throw new Error("This Amplenote client does not expose replaceNoteContent.");
+  if (!replaced) throw new Error("Could not update the deck note.");
+  return replaced;
 }
 
 async function promptForDeckNote(app) {
@@ -326,7 +329,8 @@ async function promptForDeckNote(app) {
       key: "deckNote"
     }]
   });
-  return extractNoteUUID(promptValues(result, ["deckNote"])?.deckNote);
+  if (Array.isArray(result)) return extractNoteUUID(result[0]);
+  return extractNoteUUID(result?.deckNote || result);
 }
 
 async function readDeck(app, deckNoteUUID) {
@@ -422,6 +426,7 @@ const core = {
   replaceCard,
   extractNoteUUID,
   promptValues,
+  promptForDeckNote,
   createDeck,
   scanCurrentNote,
   scanTag,
