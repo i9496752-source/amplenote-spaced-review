@@ -1,3 +1,4 @@
+(() => {
 const DECK_MARKER_START = "<!-- spaced-review-cards:start -->";
 const DECK_MARKER_END = "<!-- spaced-review-cards:end -->";
 const DEFAULT_DECK_TITLE = "Spaced Review Deck";
@@ -491,4 +492,5 @@ const plugin = {
   }
 };
 
-plugin;
+return plugin;
+})();
